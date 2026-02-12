@@ -1,5 +1,7 @@
 <?php
 
+namespace app\models;
+
 class ObjetHistorique
 {
     private $db;
@@ -70,10 +72,10 @@ class ObjetHistorique
             "INSERT INTO objet_historique (id_obj, id_owner) VALUES (:id_obj, :id_owner)"
         );
 
-        $query->bindParam(':id_obj', $this->id_obj);
-        $query->bindParam(':id_owner', $this->id_owner);
-
-        if ($query->execute()) {
+        if ($query->execute([
+            ':id_obj' => $this->id_obj,
+            ':id_owner' => $this->id_owner
+        ])) {
             $this->id = $this->db->lastInsertId();
             return true;
         }
@@ -86,8 +88,7 @@ class ObjetHistorique
     public function read($id)
     {
         $query = $this->db->prepare("SELECT * FROM objet_historique WHERE id = :id");
-        $query->bindParam(':id', $id);
-        $query->execute();
+        $query->execute([':id' => $id]);
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
         if ($data) {
@@ -116,8 +117,7 @@ class ObjetHistorique
     public function readByObjet($id_obj)
     {
         $query = $this->db->prepare("SELECT * FROM objet_historique WHERE id_obj = :id_obj ORDER BY date_own DESC");
-        $query->bindParam(':id_obj', $id_obj);
-        $query->execute();
+        $query->execute([':id_obj' => $id_obj]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -127,8 +127,7 @@ class ObjetHistorique
     public function readByOwner($id_owner)
     {
         $query = $this->db->prepare("SELECT * FROM objet_historique WHERE id_owner = :id_owner ORDER BY date_own DESC");
-        $query->bindParam(':id_owner', $id_owner);
-        $query->execute();
+        $query->execute([':id_owner' => $id_owner]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -141,12 +140,12 @@ class ObjetHistorique
             "UPDATE objet_historique SET id_obj = :id_obj, id_owner = :id_owner, date_own = :date_own WHERE id = :id"
         );
 
-        $query->bindParam(':id', $this->id);
-        $query->bindParam(':id_obj', $this->id_obj);
-        $query->bindParam(':id_owner', $this->id_owner);
-        $query->bindParam(':date_own', $this->date_own);
-
-        return $query->execute();
+        return $query->execute([
+            ':id' => $this->id,
+            ':id_obj' => $this->id_obj,
+            ':id_owner' => $this->id_owner,
+            ':date_own' => $this->date_own
+        ]);
     }
 
     /**
@@ -155,7 +154,6 @@ class ObjetHistorique
     public function delete($id)
     {
         $query = $this->db->prepare("DELETE FROM objet_historique WHERE id = :id");
-        $query->bindParam(':id', $id);
-        return $query->execute();
+        return $query->execute([':id' => $id]);
     }
 }

@@ -22,6 +22,16 @@ $router->group('', function(Router $router) use ($app) {
 		$app->render('index');
 	});
 
+	$router->get('/login', function() use ($app) {
+		$controller = new UserController($app->db());
+		$controller->showLogin();
+	});
+
+	$router->post('/auth/login', function () use ($app){
+		$controller = new UserController($app->db());
+		$controller->login();
+	});
+
 	$router->get('/home', function() use ($app) {
 		$app->render('home');
 	});
@@ -31,15 +41,13 @@ $router->group('', function(Router $router) use ($app) {
 	});
 
 	$router->get('/register', function() use ($app) {
-		$app->render('register');
+		$controller = new UserController($app->db());
+		$controller->showRegister();
 	});
 
 	$router->post('/auth/register', function () use ($app){
-		$email      = $app->request()->data->email ?? '';
-        $password   = $app->request()->data->password ?? '';
-        $username   = $app->request()->data->username ?? '';
-        $controller = new UserController($app);
-        $controller->connect($email, $password, $username);
+		$controller = new UserController($app->db());
+		$controller->register();
 	}); 
 
 	$router->get('/shop', function() use ($app) {

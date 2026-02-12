@@ -36,6 +36,11 @@ use Tracy\Debugger;
  * For advanced options, see the plugin documentation above.
  **********************************************/
 
+// Enable PHP session handling
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 /*********************************************
  *           Tracy Debugger Setup            *
  *********************************************

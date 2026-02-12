@@ -1,3 +1,8 @@
+<?php
+function e($v){ return htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8'); }
+function cls_invalid($errors, $field){ return ($errors[$field] ?? '') !== '' ? 'is-invalid' : ''; }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,7 +19,7 @@
 
   <header class="site-header border-bottom p-3">
     <div class="container-lg d-flex justify-content-between align-items-center">
-      <a href="index.html" class="navbar-brand">takalo-takalo</a>
+      <a href="/" class="navbar-brand">takalo-takalo</a>
     </div>
   </header>
 
@@ -24,22 +29,44 @@
         <div class="card shadow-sm">
           <div class="card-body p-4">
             <div class="text mt-3">
-              <a href="index.html" class="small">Go back</a>
+              <a href="/" class="small">Retour</a>
             </div>
-            <h3 class="card-title mb-3 text-center">Log in</h3>
-            <form method="POST" action="#">
-              <div class="mb-3">
-                <input type="email" name="email" class="form-control ps-3" placeholder="Email" required>
+            <h3 class="card-title mb-3 text-center">Se connecter</h3>
+            
+            <?php if (!empty($success_message ?? '')): ?>
+              <div class="alert alert-success" role="alert">
+                <?= e($success_message) ?>
               </div>
-              <div class="mb-3">
-                <input type="password" name="password" class="form-control ps-3" placeholder="Password" required>
+            <?php endif; ?>
+            
+            <?php if (!empty($errors['_global'] ?? '')): ?>
+              <div class="alert alert-danger" role="alert">
+                <?= e($errors['_global']) ?>
               </div>
-              <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary">ok</button>
-              </div>
+            <?php endif; ?>
+            
+            <form method="POST" action="/auth/login" novalidate>
+                <input type="hidden" name="role" value="<?= e($role ?? 'user') ?>">
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input id="email" name="email" type="email" class="form-control <?= cls_invalid($errors, 'email') ?>" placeholder="Email" value="<?= e($values['email'] ?? '') ?>" required>
+                  <?php if (!empty($errors['email'])): ?>
+                    <div class="invalid-feedback d-block"><?= e($errors['email']) ?></div>
+                  <?php endif; ?>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Mot de passe</label>
+                  <input id="password" name="password" type="password" class="form-control <?= cls_invalid($errors, 'password') ?>" placeholder="Mot de passe" required>
+                  <?php if (!empty($errors['password'])): ?>
+                    <div class="invalid-feedback d-block"><?= e($errors['password']) ?></div>
+                  <?php endif; ?>
+                </div>
+                <div class="d-grid gap-2">
+                  <button type="submit" class="btn btn-primary">Se connecter</button>
+                </div>
             </form>
             <div class="text-center mt-3">
-              <a href="register.html" class="small">Create an account</a>
+              <a href="/register?role=<?= e($role ?? 'user') ?>" class="small">Créer un compte</a>
             </div>
           </div>
         </div>

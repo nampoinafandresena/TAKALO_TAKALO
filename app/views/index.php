@@ -14,7 +14,7 @@
 
   <header class="site-header border-bottom p-3">
     <div class="container-lg d-flex justify-content-between align-items-center">
-      <a href="index.html" class="navbar-brand">takalo-takalo</a>
+      <a href="index.php" class="navbar-brand">takalo-takalo</a>
     </div>
   </header>
 
@@ -26,7 +26,7 @@
             <h3 class="card-title mb-3 text-center">I am an...</h3>
             <div class="row gx-3">
               <div class="col-6">
-                <a href="login.html?role=user" style="text-decoration: none; color: inherit;">
+                <a href="/login?role=user" style="text-decoration: none; color: inherit;">
                   <div class="card choice-card text-center p-3" style="cursor:pointer; transition: all 0.3s; border: 2px solid transparent;">
                     <div class="card-body">
                       <h5 class="card-title">User</h5>
@@ -36,7 +36,7 @@
                 </a>
               </div>
               <div class="col-6">
-                <a href="login.html?role=admin" style="text-decoration: none; color: inherit;">
+                <a href="/login?role=admin" style="text-decoration: none; color: inherit;">
                   <div class="card choice-card text-center p-3" style="cursor:pointer; transition: all 0.3s; border: 2px solid transparent;">
                     <div class="card-body">
                       <h5 class="card-title">Admin</h5>

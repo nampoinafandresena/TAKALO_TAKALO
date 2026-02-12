@@ -1,5 +1,7 @@
 <?php
 
+namespace app\models;
+
 class Objet
 {
     private $db;
@@ -107,13 +109,13 @@ class Objet
              VALUES (:nom_obj, :id_cat, :description, :id_proprietaire, :prix_estimatif)"
         );
 
-        $query->bindParam(':nom_obj', $this->nom_obj);
-        $query->bindParam(':id_cat', $this->id_cat);
-        $query->bindParam(':description', $this->description);
-        $query->bindParam(':id_proprietaire', $this->id_proprietaire);
-        $query->bindParam(':prix_estimatif', $this->prix_estimatif);
-
-        if ($query->execute()) {
+        if ($query->execute([
+            ':nom_obj' => $this->nom_obj,
+            ':id_cat' => $this->id_cat,
+            ':description' => $this->description,
+            ':id_proprietaire' => $this->id_proprietaire,
+            ':prix_estimatif' => $this->prix_estimatif
+        ])) {
             $this->id = $this->db->lastInsertId();
             return true;
         }
@@ -126,8 +128,7 @@ class Objet
     public function read($id)
     {
         $query = $this->db->prepare("SELECT * FROM objet WHERE id = :id");
-        $query->bindParam(':id', $id);
-        $query->execute();
+        $query->execute([':id' => $id]);
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
         if ($data) {
@@ -159,8 +160,7 @@ class Objet
     public function readByProprietaire($id_proprietaire)
     {
         $query = $this->db->prepare("SELECT * FROM objet WHERE id_proprietaire = :id_proprietaire ORDER BY date_publication DESC");
-        $query->bindParam(':id_proprietaire', $id_proprietaire);
-        $query->execute();
+        $query->execute([':id_proprietaire' => $id_proprietaire]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -170,8 +170,7 @@ class Objet
     public function readByCategorie($id_cat)
     {
         $query = $this->db->prepare("SELECT * FROM objet WHERE id_cat = :id_cat ORDER BY date_publication DESC");
-        $query->bindParam(':id_cat', $id_cat);
-        $query->execute();
+        $query->execute([':id_cat' => $id_cat]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -185,14 +184,14 @@ class Objet
              id_proprietaire = :id_proprietaire, prix_estimatif = :prix_estimatif WHERE id = :id"
         );
 
-        $query->bindParam(':id', $this->id);
-        $query->bindParam(':nom_obj', $this->nom_obj);
-        $query->bindParam(':id_cat', $this->id_cat);
-        $query->bindParam(':description', $this->description);
-        $query->bindParam(':id_proprietaire', $this->id_proprietaire);
-        $query->bindParam(':prix_estimatif', $this->prix_estimatif);
-
-        return $query->execute();
+        return $query->execute([
+            ':id' => $this->id,
+            ':nom_obj' => $this->nom_obj,
+            ':id_cat' => $this->id_cat,
+            ':description' => $this->description,
+            ':id_proprietaire' => $this->id_proprietaire,
+            ':prix_estimatif' => $this->prix_estimatif
+        ]);
     }
 
     /**
@@ -201,7 +200,6 @@ class Objet
     public function delete($id)
     {
         $query = $this->db->prepare("DELETE FROM objet WHERE id = :id");
-        $query->bindParam(':id', $id);
-        return $query->execute();
+        return $query->execute([':id' => $id]);
     }
 }

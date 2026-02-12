@@ -224,7 +224,7 @@
               <use xlink:href="#navbar-icon"></use>
             </svg>
           </button>
-          <a href="index.html" class="navbar-brand order-2 order-lg-2 d-flex d-lg-none">
+          <a href="index.php" class="navbar-brand order-2 order-lg-2 d-flex d-lg-none">
             <!-- <img src="assets/images/main-logo.png" alt="Logo"> -->
           </a>
           <div class="offcanvas offcanvas-end order-3" tabindex="-1" id="bdNavbar"
@@ -243,7 +243,7 @@
                     <a class="nav-link text-white me-4" href="about.html"> About </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link text-white me-4" href="shop.html"> Shop </a>
+                    <a class="nav-link text-white me-4" href="shop.php"> Shop </a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link me-4 dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button"
@@ -258,7 +258,7 @@
                             class="badge ms-1 bg-light text-primary ">PRO</span></a>
                       </li>
                       <li>
-                        <a href="shop.html" class="dropdown-item">Shop<span
+                        <a href="shop.php" class="dropdown-item">Shop<span
                             class="badge ms-1 bg-light text-primary ">PRO</span></a>
                       </li>
                       <li>
@@ -285,13 +285,13 @@
                   </li>
                 </ul>
               </div>
-              <a href="index.html" class="navbar-brand order-2 order-lg-2 d-none d-lg-flex">
+              <a href="index.php" class="navbar-brand order-2 order-lg-2 d-none d-lg-flex">
                 <!-- <img src="assets/images/main-logo.png" alt="Logo"> -->
               </a>
               <ul
                 class="user-items list-unstyled d-none d-lg-flex justify-content-end align-items-center order-3 flex-grow-1 gap-5 m-0">
                 <li>
-                  <a href="profile.html" class="text-white">
+                  <a href="profile.php" class="text-white">
                      <!-- data-bs-toggle="offcanvas" data-bs-target="#offcanvasLogin" aria-controls="offcanvasLogin"> -->
                     <svg class="user svg-white" width="18" height="18">
                       <use xlink:href="#user"></use>
@@ -338,7 +338,7 @@
               <p class="fs-5 text-white mb-4">
                 All the good deals in one place
               </p>
-              <a href="shop.html" class="btn btn-lg btn-light">Find items</a>
+              <a href="shop.php" class="btn btn-lg btn-light">Find items</a>
             </div>
           </div>
         </div>
@@ -455,7 +455,7 @@
       </div>
     </div>
     <div class="text-center mt-5">
-      <a href="shop.html" class="btn btn-lg btn-dark">Shop All</a>
+      <a href="shop.php" class="btn btn-lg btn-dark">Shop All</a>
     </div>
   </section>
 
@@ -493,7 +493,7 @@
                     <a href="#" class="text-light">Clay Pieces</a>
                   </h3>
                   <div class="btn-wrap">
-                    <a href="shop.html" class="btn btn-link text-light">Shop Now</a>
+                    <a href="shop.php" class="btn btn-link text-light">Shop Now</a>
                   </div>
                 </div>
               </div>
@@ -512,7 +512,7 @@
                     <a href="#" class="text-light">Ceramic Pieces</a>
                   </h3>
                   <div class="btn-wrap">
-                    <a href="shop.html" class="btn btn-link text-light">Shop Now</a>
+                    <a href="shop.php" class="btn btn-link text-light">Shop Now</a>
                   </div>
                 </div>
               </div>
@@ -764,7 +764,7 @@
       </div>
     </div>
     <div class="text-center mt-5">
-      <a href="shop.html" class="btn btn-lg btn-dark">See more</a>
+      <a href="shop.php" class="btn btn-lg btn-dark">See more</a>
     </div>
   </section>
 
@@ -989,13 +989,13 @@
             <h5 class="widget-title  ">Quick Links</h5>
             <ul class="menu-list list-unstyled">
               <li class="menu-item fw-medium pb-2">
-                <a href="index.html" class="item-anchor">Home</a>
+                <a href="index.php" class="item-anchor">Home</a>
               </li>
               <li class="menu-item fw-medium pb-2">
                 <a href="about.html" class="item-anchor">About</a>
               </li>
               <li class="menu-item fw-medium pb-2">
-                <a href="shop.html" class="item-anchor">Shop</a>
+                <a href="shop.php" class="item-anchor">Shop</a>
               </li>
               <li class="menu-item fw-medium pb-2">
                 <a href="blog.html" class="item-anchor">Blogs</a>
@@ -1055,7 +1055,7 @@
       <div class="container-lg">
         <div class="d-flex justify-content-between">
           <div>
-            <p class="mb-0">©2026 - takalo-takalo BY ETU00xxxx, ETU00xxxx, ETU00xxxx, ETU00xxxx
+            <p class="mb-0">©2026 - takalo-takalo BY ETU004025, ETU004017, ETU003902
             </p>
           </div>
           <div>

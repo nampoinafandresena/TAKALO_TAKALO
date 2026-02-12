@@ -19,7 +19,7 @@ function cls_invalid($errors, $field){ return ($errors[$field] ?? '') !== '' ? '
 
   <header class="site-header border-bottom p-3">
     <div class="container-lg d-flex justify-content-between align-items-center">
-      <a href="index.html" class="navbar-brand">takalo-takalo</a>
+      <a href="/" class="navbar-brand">takalo-takalo</a>
     </div>
   </header>
 
@@ -28,54 +28,57 @@ function cls_invalid($errors, $field){ return ($errors[$field] ?? '') !== '' ? '
       <div class="col-lg-4 col-md-6 mx-auto">
         <div class="card shadow-sm">
           <div class="card-body p-4">
-            <div class="text mt-3">
-              <a href="login.html" class="small">Go back</a>
+            <div class="text mb-3">
+              <a href="/login?role=<?= e($role ?? 'user') ?>" class="small">Retour</a>
             </div>
-            <h3 class="card-title mb-3 text-center">Register</h3>
+            <h3 class="card-title mb-3 text-center">S'inscrire</h3>
 
-            <!-- <form method="POST" action="#">
-              <div class="mb-3">
-                <input type="email" name="email" class="form-control ps-3" placeholder="Email" required>
+            <?php if (!empty($errors['_global'] ?? '')): ?>
+              <div class="alert alert-danger" role="alert">
+                <?= e($errors['_global']) ?>
               </div>
-              <div class="mb-3">
-                <input type="password" name="password" class="form-control ps-3" placeholder="Password" required>
-              </div>
-              <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary">ok</button>
-              </div>
-            </form> -->
+            <?php endif; ?>
 
-            <form id="registerForm" method="post" action="/auth/register" novalidate>
-                <div id="formStatus" class="alert d-none"></div>
-
+            <form method="post" action="/auth/register" novalidate>
+                <input type="hidden" name="role" value="<?= e($role ?? 'user') ?>">
                 <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input id="username" name="username" class="form-control <?= cls_invalid($errors,'nom') ?>" value="<?= e($values['nom'] ?? '') ?>">
-                <div class="invalid-feedback" id="nomError"><?= e($errors['nom'] ?? '') ?></div>
-                </div>
-
-
-                <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input id="email" name="email" class="form-control <?= cls_invalid($errors,'email') ?>" value="<?= e($values['email'] ?? '') ?>">
-                <div class="invalid-feedback" id="emailError"><?= e($errors['email'] ?? '') ?></div>
+                  <label for="pseudo" class="form-label">Pseudo</label>
+                  <input id="pseudo" name="pseudo" class="form-control <?= cls_invalid($errors, 'pseudo') ?>" value="<?= e($values['pseudo'] ?? '') ?>" required>
+                  <?php if (!empty($errors['pseudo'])): ?>
+                    <div class="invalid-feedback d-block"><?= e($errors['pseudo']) ?></div>
+                  <?php endif; ?>
                 </div>
 
                 <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input id="password" name="password" type="password" class="form-control <?= cls_invalid($errors,'password') ?>">
-                <div class="invalid-feedback" id="passwordError"><?= e($errors['password'] ?? '') ?></div>
+                  <label for="email" class="form-label">Email</label>
+                  <input id="email" name="email" type="email" class="form-control <?= cls_invalid($errors, 'email') ?>" value="<?= e($values['email'] ?? '') ?>" required>
+                  <?php if (!empty($errors['email'])): ?>
+                    <div class="invalid-feedback d-block"><?= e($errors['email']) ?></div>
+                  <?php endif; ?>
                 </div>
 
                 <div class="mb-3">
-                <label for="confirm_password" class="form-label">Confirm password</label>
-                <input id="confirm_password" name="confirm_password" type="password" class="form-control <?= cls_invalid($errors,'confirm_password') ?>">
-                <div class="invalid-feedback" id="confirmPasswordError"><?= e($errors['confirm_password'] ?? '') ?></div>
+                  <label for="password" class="form-label">Mot de passe</label>
+                  <input id="password" name="password" type="password" class="form-control <?= cls_invalid($errors, 'password') ?>" required>
+                  <?php if (!empty($errors['password'])): ?>
+                    <div class="invalid-feedback d-block"><?= e($errors['password']) ?></div>
+                  <?php endif; ?>
                 </div>
 
-                <button class="btn btn-primary w-100" type="submit">Register</button>
+                <div class="mb-3">
+                  <label for="confirm_password" class="form-label">Confirmer le mot de passe</label>
+                  <input id="confirm_password" name="confirm_password" type="password" class="form-control <?= cls_invalid($errors, 'confirm_password') ?>" required>
+                  <?php if (!empty($errors['confirm_password'])): ?>
+                    <div class="invalid-feedback d-block"><?= e($errors['confirm_password']) ?></div>
+                  <?php endif; ?>
+                </div>
+
+                <button class="btn btn-primary w-100" type="submit">S'inscrire</button>
             </form>
 
+            <div class="text-center mt-3">
+              <small>Vous avez déjà un compte? <a href="/login">Se connecter</a></small>
+            </div>
           </div>
         </div>
       </div>

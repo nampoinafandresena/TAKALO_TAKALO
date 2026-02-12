@@ -1,5 +1,7 @@
 <?php
 
+namespace app\models;
+
 class PhotoObjet
 {
     private $db;
@@ -58,10 +60,10 @@ class PhotoObjet
             "INSERT INTO photos_objets (src, id_obj) VALUES (:src, :id_obj)"
         );
 
-        $query->bindParam(':src', $this->src);
-        $query->bindParam(':id_obj', $this->id_obj);
-
-        if ($query->execute()) {
+        if ($query->execute([
+            ':src' => $this->src,
+            ':id_obj' => $this->id_obj
+        ])) {
             $this->id_photo = $this->db->lastInsertId();
             return true;
         }
@@ -74,8 +76,7 @@ class PhotoObjet
     public function read($id_photo)
     {
         $query = $this->db->prepare("SELECT * FROM photos_objets WHERE id_photo = :id_photo");
-        $query->bindParam(':id_photo', $id_photo);
-        $query->execute();
+        $query->execute([':id_photo' => $id_photo]);
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
         if ($data) {
@@ -103,8 +104,7 @@ class PhotoObjet
     public function readByObjet($id_obj)
     {
         $query = $this->db->prepare("SELECT * FROM photos_objets WHERE id_obj = :id_obj");
-        $query->bindParam(':id_obj', $id_obj);
-        $query->execute();
+        $query->execute([':id_obj' => $id_obj]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -117,11 +117,11 @@ class PhotoObjet
             "UPDATE photos_objets SET src = :src, id_obj = :id_obj WHERE id_photo = :id_photo"
         );
 
-        $query->bindParam(':id_photo', $this->id_photo);
-        $query->bindParam(':src', $this->src);
-        $query->bindParam(':id_obj', $this->id_obj);
-
-        return $query->execute();
+        return $query->execute([
+            ':id_photo' => $this->id_photo,
+            ':src' => $this->src,
+            ':id_obj' => $this->id_obj
+        ]);
     }
 
     /**
@@ -130,7 +130,6 @@ class PhotoObjet
     public function delete($id_photo)
     {
         $query = $this->db->prepare("DELETE FROM photos_objets WHERE id_photo = :id_photo");
-        $query->bindParam(':id_photo', $id_photo);
-        return $query->execute();
+        return $query->execute([':id_photo' => $id_photo]);
     }
 }

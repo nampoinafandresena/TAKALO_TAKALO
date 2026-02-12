@@ -137,7 +137,7 @@ FRONTOFFICE
                 - bouton rechercher
             integration
 
-    SHOP.HTML
+    shop.php
         historique d appartenance
             base
             fonction

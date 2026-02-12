@@ -1,5 +1,9 @@
 <?php
 
+namespace app\models;
+
+use PDO;
+
 class User
 {
     private $db;
@@ -82,12 +86,12 @@ class User
             "INSERT INTO users (pseudo, email, pswd, role) VALUES (:pseudo, :email, :pswd, :role)"
         );
 
-        $query->bindParam(':pseudo', $this->pseudo);
-        $query->bindParam(':email', $this->email);
-        $query->bindParam(':pswd', $this->pswd);
-        $query->bindParam(':role', $this->role ?? 'user');
-
-        if ($query->execute()) {
+        if ($query->execute([
+            ':pseudo' => $this->pseudo,
+            ':email' => $this->email,
+            ':pswd' => $this->pswd,
+            ':role' => $this->role ?? 'user'
+        ])) {
             $this->id = $this->db->lastInsertId();
             return true;
         }
@@ -100,8 +104,7 @@ class User
     public function read($id)
     {
         $query = $this->db->prepare("SELECT * FROM users WHERE id = :id");
-        $query->bindParam(':id', $id);
-        $query->execute();
+        $query->execute([':id' => $id]);
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
         if ($data) {
@@ -121,8 +124,7 @@ class User
     public function readByPseudo($pseudo)
     {
         $query = $this->db->prepare("SELECT * FROM users WHERE pseudo = :pseudo");
-        $query->bindParam(':pseudo', $pseudo);
-        $query->execute();
+        $query->execute([':pseudo' => $pseudo]);
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
         if ($data) {
@@ -142,8 +144,7 @@ class User
     public function readByEmail($email)
     {
         $query = $this->db->prepare("SELECT * FROM users WHERE email = :email");
-        $query->bindParam(':email', $email);
-        $query->execute();
+        $query->execute([':email' => $email]);
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
         if ($data) {
@@ -176,13 +177,13 @@ class User
             "UPDATE users SET pseudo = :pseudo, email = :email, pswd = :pswd, role = :role WHERE id = :id"
         );
 
-        $query->bindParam(':id', $this->id);
-        $query->bindParam(':pseudo', $this->pseudo);
-        $query->bindParam(':email', $this->email);
-        $query->bindParam(':pswd', $this->pswd);
-        $query->bindParam(':role', $this->role);
-
-        return $query->execute();
+        return $query->execute([
+            ':id' => $this->id,
+            ':pseudo' => $this->pseudo,
+            ':email' => $this->email,
+            ':pswd' => $this->pswd,
+            ':role' => $this->role
+        ]);
     }
 
     /**
@@ -191,8 +192,7 @@ class User
     public function delete($id)
     {
         $query = $this->db->prepare("DELETE FROM users WHERE id = :id");
-        $query->bindParam(':id', $id);
-        return $query->execute();
+        return $query->execute([':id' => $id]);
     }
 
     /**

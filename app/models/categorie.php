@@ -1,5 +1,7 @@
 <?php
 
+namespace app\models;
+
 class Categorie
 {
     private $db;
@@ -46,9 +48,7 @@ class Categorie
             "INSERT INTO categories (nom_cat) VALUES (:nom_cat)"
         );
 
-        $query->bindParam(':nom_cat', $this->nom_cat);
-
-        if ($query->execute()) {
+        if ($query->execute([':nom_cat' => $this->nom_cat])) {
             $this->id_cat = $this->db->lastInsertId();
             return true;
         }
@@ -61,8 +61,7 @@ class Categorie
     public function read($id_cat)
     {
         $query = $this->db->prepare("SELECT * FROM categories WHERE id_cat = :id_cat");
-        $query->bindParam(':id_cat', $id_cat);
-        $query->execute();
+        $query->execute([':id_cat' => $id_cat]);
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
         if ($data) {
@@ -92,10 +91,10 @@ class Categorie
             "UPDATE categories SET nom_cat = :nom_cat WHERE id_cat = :id_cat"
         );
 
-        $query->bindParam(':id_cat', $this->id_cat);
-        $query->bindParam(':nom_cat', $this->nom_cat);
-
-        return $query->execute();
+        return $query->execute([
+            ':id_cat' => $this->id_cat,
+            ':nom_cat' => $this->nom_cat
+        ]);
     }
 
     /**
@@ -104,7 +103,6 @@ class Categorie
     public function delete($id_cat)
     {
         $query = $this->db->prepare("DELETE FROM categories WHERE id_cat = :id_cat");
-        $query->bindParam(':id_cat', $id_cat);
-        return $query->execute();
+        return $query->execute([':id_cat' => $id_cat]);
     }
 }

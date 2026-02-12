@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const payload = Object.fromEntries(formData.entries());
         console.log('Connexion:', payload);
         alert(`Connexion pour ${payload.username} (${payload.role})`);
-        // Redirection: window.location = 'profile.html';
+        // Redirection: window.location = 'profile.php';
       });
     }
 

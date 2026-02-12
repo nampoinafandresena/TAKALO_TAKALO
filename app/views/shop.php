@@ -60,7 +60,7 @@
               <use xlink:href="#navbar-icon"></use>
             </svg>
           </button>
-          <a href="home.html" class="navbar-brand order-2 order-lg-2 d-flex d-lg-none">
+          <a href="home.php" class="navbar-brand order-2 order-lg-2 d-flex d-lg-none">
           </a>
           <div class="offcanvas offcanvas-end order-3" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
             <div class="offcanvas-body">
@@ -71,21 +71,21 @@
               <div class="navbar-collapse order-1 order-lg-1" id="navbarMenu">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                    <a class="nav-link text-white me-4" href="home.html"> Home </a>
+                    <a class="nav-link text-white me-4" href="home.php"> Home </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active text-white me-4" href="shop.html"> Shop </a>
+                    <a class="nav-link active text-white me-4" href="shop.php"> Shop </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link text-white me-4" href="profile.html"> My Profile </a>
+                    <a class="nav-link text-white me-4" href="profile.php"> My Profile </a>
                   </li>
                 </ul>
               </div>
-              <a href="home.html" class="navbar-brand order-2 order-lg-2 d-none d-lg-flex">
+              <a href="home.php" class="navbar-brand order-2 order-lg-2 d-none d-lg-flex">
               </a>
               <ul class="user-items list-unstyled d-none d-lg-flex justify-content-end align-items-center order-3 flex-grow-1 gap-5 m-0">
                 <li>
-                  <a href="login.html" class="text-white">
+                  <a href="login.php" class="text-white">
                     <svg class="user svg-white" width="18" height="18">
                       <use xlink:href="#user"></use>
                     </svg>
@@ -486,13 +486,13 @@
             <h5 class="widget-title">Quick Links</h5>
             <ul class="menu-list list-unstyled">
               <li class="menu-item fw-medium pb-2">
-                <a href="home.html" class="item-anchor">Home</a>
+                <a href="home.php" class="item-anchor">Home</a>
               </li>
               <li class="menu-item fw-medium pb-2">
-                <a href="shop.html" class="item-anchor">Shop</a>
+                <a href="shop.php" class="item-anchor">Shop</a>
               </li>
               <li class="menu-item fw-medium pb-2">
-                <a href="profile.html" class="item-anchor">My Profile</a>
+                <a href="profile.php" class="item-anchor">My Profile</a>
               </li>
             </ul>
           </div>
@@ -519,7 +519,7 @@
       <div class="container-lg">
         <div class="d-flex justify-content-between">
           <div>
-            <p class="mb-0">©2026 - takalo-takalo BY ETU00xxxx, ETU00xxxx, ETU00xxxx, ETU00xxxx
+            <p class="mb-0">©2026 - takalo-takalo BY ETU004025, ETU004017, ETU003902
             </p>
           </div>
           <div>

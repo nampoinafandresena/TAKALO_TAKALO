@@ -1,5 +1,7 @@
 <?php
 
+namespace app\models;
+
 class Echange
 {
     private $db;
@@ -95,10 +97,10 @@ class Echange
              VALUES (:id_obj_demande, :id_obj_propose)"
         );
 
-        $query->bindParam(':id_obj_demande', $this->id_obj_demande);
-        $query->bindParam(':id_obj_propose', $this->id_obj_propose);
-
-        if ($query->execute()) {
+        if ($query->execute([
+            ':id_obj_demande' => $this->id_obj_demande,
+            ':id_obj_propose' => $this->id_obj_propose
+        ])) {
             $this->id = $this->db->lastInsertId();
             return true;
         }
@@ -111,8 +113,7 @@ class Echange
     public function read($id)
     {
         $query = $this->db->prepare("SELECT * FROM echange WHERE id = :id");
-        $query->bindParam(':id', $id);
-        $query->execute();
+        $query->execute([':id' => $id]);
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
         if ($data) {
@@ -143,8 +144,7 @@ class Echange
     public function readByStatut($statut)
     {
         $query = $this->db->prepare("SELECT * FROM echange WHERE statut = :statut ORDER BY date_demande DESC");
-        $query->bindParam(':statut', $statut);
-        $query->execute();
+        $query->execute([':statut' => $statut]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -154,8 +154,7 @@ class Echange
     public function readByObjDemande($id_obj_demande)
     {
         $query = $this->db->prepare("SELECT * FROM echange WHERE id_obj_demande = :id_obj_demande ORDER BY date_demande DESC");
-        $query->bindParam(':id_obj_demande', $id_obj_demande);
-        $query->execute();
+        $query->execute([':id_obj_demande' => $id_obj_demande]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -165,8 +164,7 @@ class Echange
     public function readByObjPropose($id_obj_propose)
     {
         $query = $this->db->prepare("SELECT * FROM echange WHERE id_obj_propose = :id_obj_propose ORDER BY date_demande DESC");
-        $query->bindParam(':id_obj_propose', $id_obj_propose);
-        $query->execute();
+        $query->execute([':id_obj_propose' => $id_obj_propose]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -180,13 +178,13 @@ class Echange
              date_acceptation = :date_acceptation, statut = :statut WHERE id = :id"
         );
 
-        $query->bindParam(':id', $this->id);
-        $query->bindParam(':id_obj_demande', $this->id_obj_demande);
-        $query->bindParam(':id_obj_propose', $this->id_obj_propose);
-        $query->bindParam(':date_acceptation', $this->date_acceptation);
-        $query->bindParam(':statut', $this->statut);
-
-        return $query->execute();
+        return $query->execute([
+            ':id' => $this->id,
+            ':id_obj_demande' => $this->id_obj_demande,
+            ':id_obj_propose' => $this->id_obj_propose,
+            ':date_acceptation' => $this->date_acceptation,
+            ':statut' => $this->statut
+        ]);
     }
 
     /**
@@ -214,7 +212,6 @@ class Echange
     public function delete($id)
     {
         $query = $this->db->prepare("DELETE FROM echange WHERE id = :id");
-        $query->bindParam(':id', $id);
-        return $query->execute();
+        return $query->execute([':id' => $id]);
     }
 }

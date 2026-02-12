@@ -1,0 +1,59 @@
+Nampoina:
+    login
+    integration des bases
+
+
+BASE: mysql
+GAL:
+-Import du template FLIGHT
+-Modele template (olona 1)
+-Creation des bases de donnees
+
+Refactorisation
+-Modele
+-Connexion bases
+refactorisation
+    app
+        config
+            config.php: 
+                database(77)
+            routes.php
+
+        controllers
+            a creer
+        models
+            a creer
+        views
+            pages rehetra fa ampidirina tsikelikely
+            (mandeha daholo)
+
+
+Conception base(Nampoina)
+Template(Anjara)
+- image de bases
+Refactorisation(Jo) 
+
+login & inscription => users
+-Admin
+-Users
+
+login admin: admin
+BASE: mysql
+TABLE:
+    users(id, pseudo, email, pswd)
+    admin(id, pseudo, email, pswd)
+    categories(id_cat, nom_cat) # categories des produits
+    objet(id, nom_obj, cat, description, id_proprietaire, prix_estimatif)
+    photos_objets(src, id_obj)
+    echange(id, id_obj, id_old, id_new, date_demande, date_echange) 
+
+    
+
+Affichage:
+login User simple
+login User admin
+
+
+Fonctionnalite 2/2
+1. Backoffice
+    S

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/assets/css/vendor.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+  <script src="/assets/js/modernizr.js"></script>
+</head>
+<body class="bg-light">
+
+  <header class="site-header border-bottom p-3">
+    <div class="container-lg d-flex justify-content-between align-items-center">
+      <a href="index.html" class="navbar-brand">takalo-takalo</a>
+    </div>
+  </header>
+
+  <main class="container-lg d-flex align-items-center" style="min-height:80vh;">
+    <div class="row w-100">
+      <div class="col-lg-4 col-md-6 mx-auto">
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            <div class="text mt-3">
+              <a href="login.html" class="small">Go back</a>
+            </div>
+            <h3 class="card-title mb-3 text-center">Register</h3>
+
+            <!-- <form method="POST" action="#">
+              <div class="mb-3">
+                <input type="email" name="email" class="form-control ps-3" placeholder="Email" required>
+              </div>
+              <div class="mb-3">
+                <input type="password" name="password" class="form-control ps-3" placeholder="Password" required>
+              </div>
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">ok</button>
+              </div>
+            </form> -->
+
+            <form id="registerForm" method="post" action="/register" novalidate>
+                <div id="formStatus" class="alert d-none"></div>
+
+                <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input id="username" name="username" class="form-control <?= cls_invalid($errors,'nom') ?>" value="<?= e($values['nom'] ?? '') ?>">
+                <div class="invalid-feedback" id="nomError"><?= e($errors['nom'] ?? '') ?></div>
+                </div>
+
+
+                <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" name="email" class="form-control <?= cls_invalid($errors,'email') ?>" value="<?= e($values['email'] ?? '') ?>">
+                <div class="invalid-feedback" id="emailError"><?= e($errors['email'] ?? '') ?></div>
+                </div>
+
+                <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input id="password" name="password" type="password" class="form-control <?= cls_invalid($errors,'password') ?>">
+                <div class="invalid-feedback" id="passwordError"><?= e($errors['password'] ?? '') ?></div>
+                </div>
+
+                <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirm password</label>
+                <input id="confirm_password" name="confirm_password" type="password" class="form-control <?= cls_invalid($errors,'confirm_password') ?>">
+                <div class="invalid-feedback" id="confirmPasswordError"><?= e($errors['confirm_password'] ?? '') ?></div>
+                </div>
+
+                <button class="btn btn-primary w-100" type="submit">Register</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script> 

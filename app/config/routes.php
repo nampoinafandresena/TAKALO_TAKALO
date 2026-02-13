@@ -33,11 +33,13 @@ $router->group('', function(Router $router) use ($app) {
 	});
 
 	$router->get('/home', function() use ($app) {
-		$app->render('modele', ['page' => 'home']);
+		$app->render('modele', ['page' => 'home', 'title'=> 'home']);
 	});
 
-	$router->get('/profile', function() use ($app) {
-		$app->render('profile');
+	$router->get('/profile/@id', function($id) use ($app) {
+		$controller = new UserController($app->db());
+		$user = $controller->findById($id);
+		$app->render('profile', ['user'=> $user]);
 	});
 
 	$router->get('/register', function() use ($app) {

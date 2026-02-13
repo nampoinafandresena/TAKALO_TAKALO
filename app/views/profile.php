@@ -157,10 +157,8 @@
                   </div>
                 </div>
                 <div class="col-md-9">
-                  <h2 class="mb-2">John Doe</h2>
-                  <p class="text-muted mb-1"><strong>Email:</strong> john.doe@example.com</p>
-                  <p class="text-muted mb-1"><strong>Phone:</strong> +1 234 567 8900</p>
-                  <p class="text-muted mb-3"><strong>Location:</strong> New York, USA</p>
+                  <h2 class="mb-2"><?= $user->getPseudo() ?></h2>
+                  <p class="text-muted mb-1"><strong>Email:</strong> <?= $user->getEmail() ?></p>
                   <a href="#" class="btn btn-sm btn-primary">Edit Profile</a>
                 </div>
               </div>

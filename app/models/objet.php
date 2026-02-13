@@ -154,6 +154,13 @@ class Objet
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function readAll_v()
+    {
+        $query = $this->db->prepare("SELECT * FROM v_objets_images ORDER BY date_publication DESC");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     /**
      * Récupérer les objets d'un propriétaire
      */

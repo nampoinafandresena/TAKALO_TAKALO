@@ -5,14 +5,14 @@ use PDO;
 
 class Objet
 {
-    private $db;
-    private $id;
-    private $nom_obj;
-    private $id_cat;
-    private $description;
-    private $id_proprietaire;
-    private $prix_estimatif;
-    private $date_publication;
+    public $db;
+    public $id;
+    public $nom_obj;
+    public $id_cat;
+    public $description;
+    public $id_proprietaire;
+    public $prix_estimatif;
+    public $date_publication;
 
     public function __construct($db = null)
     {

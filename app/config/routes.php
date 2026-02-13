@@ -2,6 +2,7 @@
 
 use app\controllers\ApiProductController;
 use app\controllers\UserController;
+use app\controllers\EchangeController;
 use app\middlewares\SecurityHeadersMiddleware;
 use flight\Engine;
 use flight\net\Router;
@@ -54,6 +55,26 @@ $router->group('', function(Router $router) use ($app) {
 
 	$router->get('/shop', function() use ($app) {
 		$app->render('modele', ['page' => 'shop', 'title'=> 'shop']);
+	});
+
+	$router->get('/propositions', function() use ($app) {
+		$controller = new EchangeController($app->db());
+		$controller->propositions();
+	});
+
+	$router->post('/echange/create', function() use ($app) {
+		$controller = new EchangeController($app->db());
+		$controller->create();
+	});
+
+	$router->post('/echange/accepter', function() use ($app) {
+		$controller = new EchangeController($app->db());
+		$controller->accepter();
+	});
+
+	$router->post('/echange/refuser', function() use ($app) {
+		$controller = new EchangeController($app->db());
+		$controller->refuser();
 	});
 
 	$router->get('/produit/@id', function($id) use ($app) {

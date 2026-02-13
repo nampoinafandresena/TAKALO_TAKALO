@@ -211,6 +211,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-white me-4" href="/shop"> Shop </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white me-4" href="/propositions"> Propositions </a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link me-4 dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button"
                         aria-expanded="false">Pages</a>

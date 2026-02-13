@@ -101,6 +101,26 @@ class User
     /**
      * Récupérer un utilisateur par ID
      */
+    public function read($id)
+    {
+        $query = $this->db->prepare("SELECT * FROM takalo_users WHERE id = :id");
+        $query->execute([':id' => $id]);
+
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+        if ($data) {
+            $this->id = $data['id'];
+            $this->pseudo = $data['pseudo'];
+            $this->email = $data['email'];
+            $this->pswd = $data['pswd'];
+            $this->role = $data['role'];
+            return $this;
+        }
+        return null;
+    }
+
+    /**
+     * Récupérer un utilisateur par ID (méthode statique)
+     */
     public static function findById($db, $id){
         $query = $db->prepare("SELECT * FROM takalo_users WHERE id = :id");
         $query->execute([':id' => $id]);

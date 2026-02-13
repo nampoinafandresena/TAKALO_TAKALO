@@ -168,40 +168,40 @@ $liste_objets = $objet->readAll_v();
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="card shadow-sm h-100 border-0">
             <div class="image-holder position-relative" style="height: 280px; overflow: hidden;">
-              <img src="assets/images/product-item6.jpg" alt="ceramic" class="img-fluid w-100 h-100" style="object-fit: cover;">
+              <img src="<?= htmlspecialchars($liste_objets[$i]['src']); ?>" alt="<?= htmlspecialchars($liste_objets[$i]['nom_obj']); ?>" class="img-fluid w-100 h-100" style="object-fit: cover;">
               <span class="badge bg-success position-absolute top-0 end-0 m-2">Available</span>
             </div>
             <div class="card-body">
-              <h5 class="card-title"><?php echo $liste_objets[$i]['nom_obj']; ?></h5>
-              <p class="text-muted small mb-2"></p>
+              <h5 class="card-title"><?php echo htmlspecialchars($liste_objets[$i]['nom_obj']); ?></h5>
+              <p class="text-muted small mb-2"><?= htmlspecialchars($liste_objets[$i]['nom_cat']); ?></p>
               
               <div class="row g-2 mb-3 text-sm">
                 <div class="col-6">
                   <small class="d-block text-muted"><strong>Owner:</strong></small>
                   <small class="d-flex align-items-center gap-1">
-                    <span class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 20px; height: 20px; font-size: 10px;">JD</span>
-                   <?= $liste_objets[$i]['pseudo']; ?>
+                    <span class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 20px; height: 20px; font-size: 10px;"><?= strtoupper(substr($liste_objets[$i]['pseudo'], 0, 2)); ?></span>
+                   <?= htmlspecialchars($liste_objets[$i]['pseudo']); ?>
                   </small>
                 </div>
                 <div class="col-6">
                   <small class="d-block text-muted"><strong>Value:</strong></small>
-                  <small class="text-primary fw-bold">$<?= $liste_objets[$i]['prix_estimatif']; ?></small>
+                  <small class="text-primary fw-bold">$<?= number_format($liste_objets[$i]['prix_estimatif'], 2); ?></small>
                 </div>
               </div>
 
               <div class="row g-2 mb-3 text-sm">
                 <div class="col-6">
                   <small class="d-block text-muted"><strong>Condition:</strong></small>
-                  <small><?= $liste_objets[$i]['description']; ?></small>
+                  <small><?= htmlspecialchars(substr($liste_objets[$i]['description'], 0, 40)); ?>...</small>
                 </div>
                 <div class="col-6">
                   <small class="d-block text-muted"><strong>Posted:</strong></small>
-                  <small><?= $liste_objets[$i]['date_publication']; ?></small>
+                  <small><?= date('M d, Y', strtotime($liste_objets[$i]['date_publication'])); ?></small>
                 </div>
               </div>
 
               <div class="d-grid">
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tradeModal">
+                <button class="btn btn-primary trade-btn" data-bs-toggle="modal" data-bs-target="#tradeModal" data-item-id="<?= $liste_objets[$i]['id']; ?>">
                   <svg class="trade" width="18" height="18" style="display: inline; margin-right: 5px;">
                     <use xlink:href="#trade"></use>
                   </svg>
@@ -466,20 +466,27 @@ $liste_objets = $objet->readAll_v();
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form id="tradeForm">
+            <input type="hidden" id="itemIdDemande" value="">
             <div class="mb-3">
               <label for="tradeItem" class="form-label">Select your item to trade</label>
-              <select class="form-select" id="tradeItem" required>
+              <select class="form-select" id="tradeItem" name="tradeItem" required>
                 <option value="">Choose an item from your collection...</option>
-                 <?php for($i = 0; $i < sizeof($liste_objets); $i++) {
-               if($liste_objets[$i]['id_owner'] == $_SESSION['user_id']){ ?>
-                  <option value="<?= $liste_objets[$i]['id']; ?>"><?= $liste_objets[$i]['nom_obj']; ?> - $<?= $liste_objets[$i]['prix_estimatif']; ?></option>
-                  <?php } } ?>
+                <?php 
+                  // Récupérer les objets de l'utilisateur connecté
+                  if(isset($_SESSION['user_id'])) {
+                    $objet = new Objet(Flight::db());
+                    $mes_objets = $objet->readByProprietaire($_SESSION['user_id']);
+                    foreach($mes_objets as $obj) {
+                      echo '<option value="' . $obj['id'] . '">' . $obj['nom_obj'] . ' - $' . $obj['prix_estimatif'] . '</option>';
+                    }
+                  }
+                ?>
               </select>
             </div>
             <div class="mb-3">
               <label for="message" class="form-label">Message to owner</label>
-              <textarea class="form-control" id="message" rows="4" placeholder="Tell them why you want to trade..."></textarea>
+              <textarea class="form-control" id="message" name="message" rows="4" placeholder="Tell them why you want to trade..."></textarea>
             </div>
             <div class="alert alert-info" role="alert">
               <strong>Trade Note:</strong> Once you propose, the owner will review and can accept or decline your offer.
@@ -488,7 +495,7 @@ $liste_objets = $objet->readAll_v();
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary">Send Trade Proposal</button>
+          <button type="button" class="btn btn-primary" id="submitTradeBtn">Send Trade Proposal</button>
         </div>
       </div>
     </div>
@@ -557,6 +564,55 @@ $liste_objets = $objet->readAll_v();
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
   <script src="/assets/js/plugins.js"></script>
+
+  <script>
+    // Mettre à jour l'ID de l'objet demandé quand on clique sur "Propose Trade"
+    document.querySelectorAll('.trade-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.getElementById('itemIdDemande').value = this.getAttribute('data-item-id');
+      });
+    });
+
+    // Soumission du formulaire de trade
+    document.getElementById('submitTradeBtn').addEventListener('click', function() {
+      const itemIdDemande = document.getElementById('itemIdDemande').value;
+      const itemPropose = document.getElementById('tradeItem').value;
+
+      if (!itemIdDemande || !itemPropose) {
+        alert('Veuillez sélectionner un objet');
+        return;
+      }
+
+      // Envoyer la demande d'échange
+      fetch('/echange/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id_obj_demande: parseInt(itemIdDemande),
+          id_obj_propose: parseInt(itemPropose)
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Proposition d\'échange envoyée avec succès!');
+          // Fermer le modal
+          const modal = bootstrap.Modal.getInstance(document.getElementById('tradeModal'));
+          modal.hide();
+          // Réinitialiser le formulaire
+          document.getElementById('tradeForm').reset();
+        } else {
+          alert('Erreur: ' + data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Erreur lors de l\'envoi de la proposition');
+      });
+    });
+  </script>
 </body>
 
 </html>

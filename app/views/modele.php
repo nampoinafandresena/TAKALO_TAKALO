@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>takalo-takalo</title>
+  <title>takalo-takalo | <?= $title ?></title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -134,39 +134,6 @@
         </div>
     </div>
 
-    <!-- LOGIN -->
-    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasLogin"
-        aria-labelledby="My Login">
-        <div class="offcanvas-header">
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-        <div class="login-detail">
-            <div class="login-form p-0">
-            <div class="col-lg-12 mx-auto">
-                <form id="login-form">
-                <input type="text" name="username" placeholder="Username or Email Address *"
-                    class="mb-3 ps-3 text-input w-100">
-                <input type="password" name="password" placeholder="Password" class="ps-3 text-input w-100">
-                <div class="checkbox d-flex justify-content-between mt-4">
-                    <p class="checkbox-form">
-                    <label class="">
-                        <input name="rememberme" type="checkbox" id="remember-me" value="forever"> Remember me </label>
-                    </p>
-                    <p class="lost-password">
-                    <a href="#">Forgot your password?</a>
-                    </p>
-                </div>
-                </form>
-            </div>
-            </div>
-            <div class="modal-footer mt-5 d-flex justify-content-center">
-            <button type="button" class="btn btn-primary w-100 mb-2">Login</button>
-            <button type="button" class="btn btn-outline-primary w-100">Register</button>
-            </div>
-        </div>
-        </div>
-    </div>
 
     <!-- CART -->
     <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="My Cart">
@@ -289,7 +256,7 @@
                 <ul
                     class="user-items list-unstyled d-none d-lg-flex justify-content-end align-items-center order-3 flex-grow-1 gap-5 m-0">
                     <li>
-                    <a href="profile.php" class="text-white">
+                    <a href="/profile/<?= $_SESSION['user_id'] ?>" class="text-white">
                         <svg class="user svg-white" width="18" height="18">
                         <use xlink:href="#user"></use>
                         </svg>

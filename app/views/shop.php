@@ -49,7 +49,7 @@
   </svg>
 
   <!-- HEADER -->
-  <header id="header" class="site-header fixed-top border-bottom p-3 bg-primary">
+  <!-- <header id="header" class="site-header fixed-top border-bottom p-3 bg-primary">
     <div class="container-lg">
       <div class="row">
         <nav class="navbar navbar-expand-lg">
@@ -105,7 +105,7 @@
         </nav>
       </div>
     </div>
-  </header>
+  </header> -->
 
   <!-- SHOP SECTION -->
   <section class="py-5" style="margin-top: 80px;">
@@ -478,7 +478,7 @@
   </div>
 
   <!-- FOOTER -->
-  <footer id="footer" class="border-top mt-5">
+  <!-- <footer id="footer" class="border-top mt-5">
     <div class="container-lg">
       <div class="row justify-content-between pb-5">
         <div class="col-lg-2 col-md-6">
@@ -533,7 +533,7 @@
         </div>
       </div>
     </div>
-  </footer>
+  </footer> -->
 
   <script src="/assets/js/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

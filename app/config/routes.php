@@ -53,7 +53,7 @@ $router->group('', function(Router $router) use ($app) {
 	}); 
 
 	$router->get('/shop', function() use ($app) {
-		$app->render('shop');
+		$app->render('modele', ['page' => 'shop', 'title'=> 'shop']);
 	});
 
 	$router->get('/produit/@id', function($id) use ($app) {

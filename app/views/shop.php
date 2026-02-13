@@ -60,7 +60,7 @@
               <use xlink:href="#navbar-icon"></use>
             </svg>
           </button>
-          <a href="home.php" class="navbar-brand order-2 order-lg-2 d-flex d-lg-none">
+          <a href="/home" class="navbar-brand order-2 order-lg-2 d-flex d-lg-none">
           </a>
           <div class="offcanvas offcanvas-end order-3" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
             <div class="offcanvas-body">
@@ -71,7 +71,7 @@
               <div class="navbar-collapse order-1 order-lg-1" id="navbarMenu">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                    <a class="nav-link text-white me-4" href="home.php"> Home </a>
+                    <a class="nav-link text-white me-4" href="/home"> Home </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link active text-white me-4" href="shop.php"> Shop </a>
@@ -81,7 +81,7 @@
                   </li>
                 </ul>
               </div>
-              <a href="home.php" class="navbar-brand order-2 order-lg-2 d-none d-lg-flex">
+              <a href="/home" class="navbar-brand order-2 order-lg-2 d-none d-lg-flex">
               </a>
               <ul class="user-items list-unstyled d-none d-lg-flex justify-content-end align-items-center order-3 flex-grow-1 gap-5 m-0">
                 <li>
@@ -486,7 +486,7 @@
             <h5 class="widget-title">Quick Links</h5>
             <ul class="menu-list list-unstyled">
               <li class="menu-item fw-medium pb-2">
-                <a href="home.php" class="item-anchor">Home</a>
+                <a href="/home" class="item-anchor">Home</a>
               </li>
               <li class="menu-item fw-medium pb-2">
                 <a href="shop.php" class="item-anchor">Shop</a>

@@ -1,3 +1,5 @@
+?php
+
 <!DOCTYPE html>
 <html>
 
@@ -243,7 +245,7 @@
                     <a class="nav-link text-white me-4" href="about.html"> About </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link text-white me-4" href="shop.php"> Shop </a>
+                    <a class="nav-link text-white me-4" href="/shop"> Shop </a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link me-4 dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button"
@@ -258,7 +260,7 @@
                             class="badge ms-1 bg-light text-primary ">PRO</span></a>
                       </li>
                       <li>
-                        <a href="shop.php" class="dropdown-item">Shop<span
+                        <a href="/shop" class="dropdown-item">Shop<span
                             class="badge ms-1 bg-light text-primary ">PRO</span></a>
                       </li>
                       <li>
@@ -338,7 +340,7 @@
               <p class="fs-5 text-white mb-4">
                 All the good deals in one place
               </p>
-              <a href="shop.php" class="btn btn-lg btn-light">Find items</a>
+              <a href="/shop" class="btn btn-lg btn-light">Find items</a>
             </div>
           </div>
         </div>
@@ -455,7 +457,7 @@
       </div>
     </div>
     <div class="text-center mt-5">
-      <a href="shop.php" class="btn btn-lg btn-dark">Shop All</a>
+      <a href="/shop" class="btn btn-lg btn-dark">Shop All</a>
     </div>
   </section>
 
@@ -493,7 +495,7 @@
                     <a href="#" class="text-light">Clay Pieces</a>
                   </h3>
                   <div class="btn-wrap">
-                    <a href="shop.php" class="btn btn-link text-light">Shop Now</a>
+                    <a href="/shop" class="btn btn-link text-light">Shop Now</a>
                   </div>
                 </div>
               </div>
@@ -512,7 +514,7 @@
                     <a href="#" class="text-light">Ceramic Pieces</a>
                   </h3>
                   <div class="btn-wrap">
-                    <a href="shop.php" class="btn btn-link text-light">Shop Now</a>
+                    <a href="/shop" class="btn btn-link text-light">Shop Now</a>
                   </div>
                 </div>
               </div>
@@ -764,7 +766,7 @@
       </div>
     </div>
     <div class="text-center mt-5">
-      <a href="shop.php" class="btn btn-lg btn-dark">See more</a>
+      <a href="/shop" class="btn btn-lg btn-dark">See more</a>
     </div>
   </section>
 
@@ -995,7 +997,7 @@
                 <a href="about.html" class="item-anchor">About</a>
               </li>
               <li class="menu-item fw-medium pb-2">
-                <a href="shop.php" class="item-anchor">Shop</a>
+                <a href="/shop" class="item-anchor">Shop</a>
               </li>
               <li class="menu-item fw-medium pb-2">
                 <a href="blog.html" class="item-anchor">Blogs</a>

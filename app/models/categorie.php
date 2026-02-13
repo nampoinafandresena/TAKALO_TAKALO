@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+use PDO;
 
 class Categorie
 {
@@ -42,18 +43,22 @@ class Categorie
     /**
      * Créer une nouvelle catégorie
      */
-    public function create()
-    {
-        $query = $this->db->prepare(
-            "INSERT INTO takalo_categories (nom_cat) VALUES (:nom_cat)"
-        );
-
-        if ($query->execute([':nom_cat' => $this->nom_cat])) {
-            $this->id_cat = $this->db->lastInsertId();
-            return true;
-        }
-        return false;
+    public function create_new_cat($nom_cat){
+        $stmt = $this->db->prepare("INSERT INTO takalo_categories (nom_cat) VALUES (:nom_cat)");
+        $stmt->execute([':nom_cat' => $nom_cat]);
     }
+    // public function create()
+    // {
+    //     $query = $this->db->prepare(
+    //         "INSERT INTO takalo_categories (nom_cat) VALUES (:nom_cat)"
+    //     );
+
+    //     if ($query->execute([':nom_cat' => $this->nom_cat])) {
+    //         $this->id_cat = $this->db->lastInsertId();
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     /**
      * Récupérer une catégorie par ID
@@ -79,7 +84,7 @@ class Categorie
     {
         $query = $this->db->prepare("SELECT * FROM takalo_categories");
         $query->execute();
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        return $query->fetchAll();
     }
 
     /**

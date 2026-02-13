@@ -45,7 +45,7 @@ class Categorie
     public function create()
     {
         $query = $this->db->prepare(
-            "INSERT INTO categories (nom_cat) VALUES (:nom_cat)"
+            "INSERT INTO takalo_categories (nom_cat) VALUES (:nom_cat)"
         );
 
         if ($query->execute([':nom_cat' => $this->nom_cat])) {
@@ -60,7 +60,7 @@ class Categorie
      */
     public function read($id_cat)
     {
-        $query = $this->db->prepare("SELECT * FROM categories WHERE id_cat = :id_cat");
+        $query = $this->db->prepare("SELECT * FROM takalo_categories WHERE id_cat = :id_cat");
         $query->execute([':id_cat' => $id_cat]);
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
@@ -77,7 +77,7 @@ class Categorie
      */
     public function readAll()
     {
-        $query = $this->db->prepare("SELECT * FROM categories");
+        $query = $this->db->prepare("SELECT * FROM takalo_categories");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -88,7 +88,7 @@ class Categorie
     public function update()
     {
         $query = $this->db->prepare(
-            "UPDATE categories SET nom_cat = :nom_cat WHERE id_cat = :id_cat"
+            "UPDATE takalo_categories SET nom_cat = :nom_cat WHERE id_cat = :id_cat"
         );
 
         return $query->execute([
@@ -102,7 +102,7 @@ class Categorie
      */
     public function delete($id_cat)
     {
-        $query = $this->db->prepare("DELETE FROM categories WHERE id_cat = :id_cat");
+        $query = $this->db->prepare("DELETE FROM takalo_categories WHERE id_cat = :id_cat");
         return $query->execute([':id_cat' => $id_cat]);
     }
 }

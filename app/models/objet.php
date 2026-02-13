@@ -105,7 +105,7 @@ class Objet
     public function create()
     {
         $query = $this->db->prepare(
-            "INSERT INTO objet (nom_obj, id_cat, description, id_proprietaire, prix_estimatif) 
+            "INSERT INTO takalo_objet (nom_obj, id_cat, description, id_proprietaire, prix_estimatif) 
              VALUES (:nom_obj, :id_cat, :description, :id_proprietaire, :prix_estimatif)"
         );
 
@@ -127,7 +127,7 @@ class Objet
      */
     public function read($id)
     {
-        $query = $this->db->prepare("SELECT * FROM objet WHERE id = :id");
+        $query = $this->db->prepare("SELECT * FROM takalo_objet WHERE id = :id");
         $query->execute([':id' => $id]);
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
@@ -149,7 +149,7 @@ class Objet
      */
     public function readAll()
     {
-        $query = $this->db->prepare("SELECT * FROM objet ORDER BY date_publication DESC");
+        $query = $this->db->prepare("SELECT * FROM takalo_objet ORDER BY date_publication DESC");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -159,7 +159,7 @@ class Objet
      */
     public function readByProprietaire($id_proprietaire)
     {
-        $query = $this->db->prepare("SELECT * FROM objet WHERE id_proprietaire = :id_proprietaire ORDER BY date_publication DESC");
+        $query = $this->db->prepare("SELECT * FROM takalo_objet WHERE id_proprietaire = :id_proprietaire ORDER BY date_publication DESC");
         $query->execute([':id_proprietaire' => $id_proprietaire]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -169,7 +169,7 @@ class Objet
      */
     public function readByCategorie($id_cat)
     {
-        $query = $this->db->prepare("SELECT * FROM objet WHERE id_cat = :id_cat ORDER BY date_publication DESC");
+        $query = $this->db->prepare("SELECT * FROM takalo_objet WHERE id_cat = :id_cat ORDER BY date_publication DESC");
         $query->execute([':id_cat' => $id_cat]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -180,7 +180,7 @@ class Objet
     public function update()
     {
         $query = $this->db->prepare(
-            "UPDATE objet SET nom_obj = :nom_obj, id_cat = :id_cat, description = :description, 
+            "UPDATE takalo_objet SET nom_obj = :nom_obj, id_cat = :id_cat, description = :description, 
              id_proprietaire = :id_proprietaire, prix_estimatif = :prix_estimatif WHERE id = :id"
         );
 
@@ -199,7 +199,7 @@ class Objet
      */
     public function delete($id)
     {
-        $query = $this->db->prepare("DELETE FROM objet WHERE id = :id");
+        $query = $this->db->prepare("DELETE FROM takalo_objet WHERE id = :id");
         return $query->execute([':id' => $id]);
     }
 }

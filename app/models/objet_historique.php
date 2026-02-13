@@ -69,7 +69,7 @@ class ObjetHistorique
     public function create()
     {
         $query = $this->db->prepare(
-            "INSERT INTO objet_historique (id_obj, id_owner) VALUES (:id_obj, :id_owner)"
+            "INSERT INTO takalo_objet_historique (id_obj, id_owner) VALUES (:id_obj, :id_owner)"
         );
 
         if ($query->execute([
@@ -87,7 +87,7 @@ class ObjetHistorique
      */
     public function read($id)
     {
-        $query = $this->db->prepare("SELECT * FROM objet_historique WHERE id = :id");
+        $query = $this->db->prepare("SELECT * FROM takalo_objet_historique WHERE id = :id");
         $query->execute([':id' => $id]);
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
@@ -106,7 +106,7 @@ class ObjetHistorique
      */
     public function readAll()
     {
-        $query = $this->db->prepare("SELECT * FROM objet_historique ORDER BY date_own DESC");
+        $query = $this->db->prepare("SELECT * FROM takalo_objet_historique ORDER BY date_own DESC");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -116,7 +116,7 @@ class ObjetHistorique
      */
     public function readByObjet($id_obj)
     {
-        $query = $this->db->prepare("SELECT * FROM objet_historique WHERE id_obj = :id_obj ORDER BY date_own DESC");
+        $query = $this->db->prepare("SELECT * FROM takalo_objet_historique WHERE id_obj = :id_obj ORDER BY date_own DESC");
         $query->execute([':id_obj' => $id_obj]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -126,7 +126,7 @@ class ObjetHistorique
      */
     public function readByOwner($id_owner)
     {
-        $query = $this->db->prepare("SELECT * FROM objet_historique WHERE id_owner = :id_owner ORDER BY date_own DESC");
+        $query = $this->db->prepare("SELECT * FROM takalo_objet_historique WHERE id_owner = :id_owner ORDER BY date_own DESC");
         $query->execute([':id_owner' => $id_owner]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -137,7 +137,7 @@ class ObjetHistorique
     public function update()
     {
         $query = $this->db->prepare(
-            "UPDATE objet_historique SET id_obj = :id_obj, id_owner = :id_owner, date_own = :date_own WHERE id = :id"
+            "UPDATE takalo_objet_historique SET id_obj = :id_obj, id_owner = :id_owner, date_own = :date_own WHERE id = :id"
         );
 
         return $query->execute([
@@ -153,7 +153,7 @@ class ObjetHistorique
      */
     public function delete($id)
     {
-        $query = $this->db->prepare("DELETE FROM objet_historique WHERE id = :id");
+        $query = $this->db->prepare("DELETE FROM takalo_objet_historique WHERE id = :id");
         return $query->execute([':id' => $id]);
     }
 }

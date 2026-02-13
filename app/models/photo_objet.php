@@ -57,7 +57,7 @@ class PhotoObjet
     public function create()
     {
         $query = $this->db->prepare(
-            "INSERT INTO photos_objets (src, id_obj) VALUES (:src, :id_obj)"
+            "INSERT INTO takalo_photos_objets (src, id_obj) VALUES (:src, :id_obj)"
         );
 
         if ($query->execute([
@@ -75,7 +75,7 @@ class PhotoObjet
      */
     public function read($id_photo)
     {
-        $query = $this->db->prepare("SELECT * FROM photos_objets WHERE id_photo = :id_photo");
+        $query = $this->db->prepare("SELECT * FROM takalo_photos_objets WHERE id_photo = :id_photo");
         $query->execute([':id_photo' => $id_photo]);
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
@@ -93,7 +93,7 @@ class PhotoObjet
      */
     public function readAll()
     {
-        $query = $this->db->prepare("SELECT * FROM photos_objets");
+        $query = $this->db->prepare("SELECT * FROM takalo_photos_objets");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -103,7 +103,7 @@ class PhotoObjet
      */
     public function readByObjet($id_obj)
     {
-        $query = $this->db->prepare("SELECT * FROM photos_objets WHERE id_obj = :id_obj");
+        $query = $this->db->prepare("SELECT * FROM takalo_photos_objets WHERE id_obj = :id_obj");
         $query->execute([':id_obj' => $id_obj]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -114,7 +114,7 @@ class PhotoObjet
     public function update()
     {
         $query = $this->db->prepare(
-            "UPDATE photos_objets SET src = :src, id_obj = :id_obj WHERE id_photo = :id_photo"
+            "UPDATE takalo_photos_objets SET src = :src, id_obj = :id_obj WHERE id_photo = :id_photo"
         );
 
         return $query->execute([
@@ -129,7 +129,7 @@ class PhotoObjet
      */
     public function delete($id_photo)
     {
-        $query = $this->db->prepare("DELETE FROM photos_objets WHERE id_photo = :id_photo");
+        $query = $this->db->prepare("DELETE FROM takalo_photos_objets WHERE id_photo = :id_photo");
         return $query->execute([':id_photo' => $id_photo]);
     }
 }

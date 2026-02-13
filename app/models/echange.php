@@ -93,7 +93,7 @@ class Echange
     public function create()
     {
         $query = $this->db->prepare(
-            "INSERT INTO echange (id_obj_demande, id_obj_propose) 
+            "INSERT INTO takalo_echange (id_obj_demande, id_obj_propose) 
              VALUES (:id_obj_demande, :id_obj_propose)"
         );
 
@@ -112,7 +112,7 @@ class Echange
      */
     public function read($id)
     {
-        $query = $this->db->prepare("SELECT * FROM echange WHERE id = :id");
+        $query = $this->db->prepare("SELECT * FROM takalo_echange WHERE id = :id");
         $query->execute([':id' => $id]);
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
@@ -133,7 +133,7 @@ class Echange
      */
     public function readAll()
     {
-        $query = $this->db->prepare("SELECT * FROM echange ORDER BY date_demande DESC");
+        $query = $this->db->prepare("SELECT * FROM takalo_echange ORDER BY date_demande DESC");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -143,7 +143,7 @@ class Echange
      */
     public function readByStatut($statut)
     {
-        $query = $this->db->prepare("SELECT * FROM echange WHERE statut = :statut ORDER BY date_demande DESC");
+        $query = $this->db->prepare("SELECT * FROM takalo_echange WHERE statut = :statut ORDER BY date_demande DESC");
         $query->execute([':statut' => $statut]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -153,7 +153,7 @@ class Echange
      */
     public function readByObjDemande($id_obj_demande)
     {
-        $query = $this->db->prepare("SELECT * FROM echange WHERE id_obj_demande = :id_obj_demande ORDER BY date_demande DESC");
+        $query = $this->db->prepare("SELECT * FROM takalo_echange WHERE id_obj_demande = :id_obj_demande ORDER BY date_demande DESC");
         $query->execute([':id_obj_demande' => $id_obj_demande]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -163,7 +163,7 @@ class Echange
      */
     public function readByObjPropose($id_obj_propose)
     {
-        $query = $this->db->prepare("SELECT * FROM echange WHERE id_obj_propose = :id_obj_propose ORDER BY date_demande DESC");
+        $query = $this->db->prepare("SELECT * FROM takalo_echange WHERE id_obj_propose = :id_obj_propose ORDER BY date_demande DESC");
         $query->execute([':id_obj_propose' => $id_obj_propose]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -174,7 +174,7 @@ class Echange
     public function update()
     {
         $query = $this->db->prepare(
-            "UPDATE echange SET id_obj_demande = :id_obj_demande, id_obj_propose = :id_obj_propose, 
+            "UPDATE takalo_echange SET id_obj_demande = :id_obj_demande, id_obj_propose = :id_obj_propose, 
              date_acceptation = :date_acceptation, statut = :statut WHERE id = :id"
         );
 
@@ -211,7 +211,7 @@ class Echange
      */
     public function delete($id)
     {
-        $query = $this->db->prepare("DELETE FROM echange WHERE id = :id");
+        $query = $this->db->prepare("DELETE FROM takalo_echange WHERE id = :id");
         return $query->execute([':id' => $id]);
     }
 }
